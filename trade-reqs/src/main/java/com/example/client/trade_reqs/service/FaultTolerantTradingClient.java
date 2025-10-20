@@ -55,12 +55,13 @@ public class FaultTolerantTradingClient {
         while (retries > 0) {
             try {
                 switch (operation.toLowerCase()) {
-                    case "buy":
+                    case "buy" -> {
                         return currentBroker.buyStock(symbol, quantity, clientId);
-                    case "sell":
+                    }
+                    case "sell" -> {
                         return currentBroker.sellStock(symbol, quantity, clientId);
-                    default:
-                        throw new IllegalArgumentException("Unknown operation: " + operation);
+                    }
+                    default -> throw new IllegalArgumentException("Unknown operation: " + operation);
                 }
             } catch (Exception e) {
                 System.out.println("Operation failed on " + currentBrokerId + ", retrying...");
